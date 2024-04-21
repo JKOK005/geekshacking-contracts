@@ -1,66 +1,54 @@
-## Foundry
+## HackOMania 2024 NFT minting
+[HackOMania2024](https://hackomania.geekshacking.com/) is over! 
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+These NFTs are only for claim for those who organized the event. 
 
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+## Procedure to deploy the contract
+### Setting up the repo
+Initialize a new repository using `forge`
+```bash
+forge init
 ```
 
-### Test
+Install openzepplin dependencies
 
-```shell
-$ forge test
+```bash
+forge install OpenZeppelin/openzeppelin-contracts
 ```
 
-### Format
-
-```shell
-$ forge fmt
+### Deploying the contract
+```bash
+forge create \
+--rpc-url <> \
+--constructor-args <arg1> <arg2> ... \
+--private-key <> \
+src/Contract.sol:NftSampleDeployment
 ```
 
-### Gas Snapshots
-
-```shell
-$ forge snapshot
+### Pipe abi contract to python dir
+```bash
+jq ".abi" ./out/Contract.sol/HackOMania2024Contract.json > python/abi/Contract.abi
 ```
 
-### Anvil
-
-```shell
-$ anvil
+### Minting NFTs 
+To mint for a single address
+```python
+python3 src/mint_single.py \
+--rpc <> \
+--contract_addr <> \
+--mint_to <> \
+--ipfs_uri <> \
+--owner_address <> \
+--owner_pk <>
 ```
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+To mint for a batch of addresses
+```python
+python3 src/mint_batch.py \
+--rpc <> \
+--contract_addr <> \
+--mint_alllTo <> \
+--ipfs_uri <> \
+--owner_address <> \
+--owner_pk <>
 ```
