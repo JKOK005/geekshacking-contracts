@@ -44,7 +44,9 @@ contract NftSampleDeployment is ERC721, ERC721Enumerable, ERC721URIStorage, Owna
         onlyOwner
     {
         require(_tokenId < MAX_SUPPLY, "Max mintable supply reached");
-        _safeMint(to, _tokenId++);
+        _safeMint(to, _tokenId);
+        _setTokenURI(_tokenId, uri);
+        _tokenId++;
     }
 
     function tokenURI(uint256 tokenId)
