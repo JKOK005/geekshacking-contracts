@@ -7,3 +7,6 @@
 [submodule "test/test-nft/lib/openzeppelin-contracts"]
 	path = test/test-nft/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "hackomania2024/lib/forge-std"]
+	path = hackomania2024/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
