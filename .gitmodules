@@ -1,3 +1,9 @@
 [submodule "test/test-contract/lib/forge-std"]
 	path = test/test-contract/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std.git
+[submodule "test/test-nft/lib/forge-std"]
+	path = test/test-nft/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "test/test-nft/lib/openzeppelin-contracts"]
+	path = test/test-nft/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
