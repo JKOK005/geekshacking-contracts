@@ -6,6 +6,7 @@ import logging
 """
 python3 src/main.py \
 --rpc <> \
+--chain_id <> \
 --contract_addr <> \
 --mints_to <> <> <> \
 --ipfs_uri <> \
@@ -16,6 +17,7 @@ python3 src/main.py \
 if __name__ == "__main__":
 	parser 	= argparse.ArgumentParser(description='HackOMania2024 single mints')
 	parser.add_argument('--rpc', type = str, nargs = '?', help = 'RPC address')
+	parser.add_argument('--chain_id', type = int, nargs = '?', help = 'Chain ID')
 	parser.add_argument('--contract_addr', type = str, nargs = '?', help = 'Address of deployed contract')
 	parser.add_argument('--mints_to', type = str, nargs = '+', help = 'Addresses to mint to', default = [])
 	parser.add_argument('--ipfs_uri', type = str, nargs = '?', help = 'IPFS path to metadata')
@@ -39,9 +41,9 @@ if __name__ == "__main__":
 					args.ipfs_uri
 				).build_transaction(
 					{	
-						"chainId"	: 421614,
-						"gas" 		: hex(1000000),
-						"gasPrice"	: hex(int(w3.eth.gas_price * 2)),
+						"chainId"	: args.chain_id,
+						"gas" 		: hex(20000000),
+						"gasPrice"	: hex(int(w3.eth.gas_price * 1.5)),
 						"nonce" 	: hex(w3.eth.get_transaction_count(args.owner_address)),
 						"value" 	: hex(0),
 						"from" 		: args.owner_address,
